@@ -17,7 +17,13 @@ POSITION = {
     "NW": (-1, -1),
 }
 
+
 gamepad = vg.VDS4Gamepad()
+
+JOYSTICK_METHODS = {
+    "left": gamepad.left_joystick_float,
+    "right": gamepad.right_joystick_float,
+}
 
 
 def on_click(x, y, button, pressed):
@@ -37,19 +43,11 @@ def push_button(button):
     gamepad.update()
 
 
-def use_left_joystick(direction):
-    gamepad.left_joystick_float(x_value_float=direction[0], y_value_float=direction[1])
+def push_joystick(stick, direction):
+    JOYSTICK_METHODS[stick](x_value_float=direction[0], y_value_float=direction[1])
     gamepad.update()
     sleep(KEY_DELAY)
-    gamepad.left_joystick_float(x_value_float=0, y_value_float=0)
-    gamepad.update()
-
-
-def use_right_joystick(direction):
-    gamepad.right_joystick_float(x_value_float=direction[0], y_value_float=direction[1])
-    gamepad.update()
-    sleep(KEY_DELAY)
-    gamepad.right_joystick_float(x_value_float=0, y_value_float=0)
+    JOYSTICK_METHODS[stick](x_value_float=0, y_value_float=0)
     gamepad.update()
 
 
@@ -59,9 +57,13 @@ def delay(val):
 
 def load_song_data_from_csv(song_name):
     """Load song data from csv file."""
-    with open(f'songs/{song_name}.csv', newline='') as f:
-        reader = csv.reader(f)
-        data = list(reader)
+    try:
+        with open(f'songs/{song_name}.csv', newline='') as f:
+            reader = csv.reader(f)
+            data = list(reader)
+    except FileNotFoundError:
+        print(f'Song "{song_name}" not found.')
+        exit(1)
     return data
 
 
@@ -77,16 +79,19 @@ def play_song(song_name):
     # Play the song data
     for i, line in enumerate(song_data):
         if i > 1:
-            print(f"Playing note {i - 1}/{note_count}")
+            print(f"Playing note [{line[1]}] {i - 1}/{note_count}")
         if i == 0:
             continue
+        if not line[1] or not line[2]:
+            print(f"Exiting due to missing data")
+            exit(1)
         if line[0] == "S":
             delay(float(line[2]))
         elif line[0] == "L":
-            use_left_joystick(POSITION[line[1]])
+            push_joystick("left", POSITION[line[1]])
             delay(float(line[2]))
         elif line[0] == "R":
-            use_right_joystick(POSITION[line[1]])
+            push_joystick("right", POSITION[line[1]])
             delay(float(line[2]))
 
 
@@ -97,11 +102,11 @@ def setup_listener():
     mouse_listener.join()
 
 
-def get_song():
+def get_song_from_user():
     global song
     song = input("Which song would you like to play? ")
 
 
 if __name__ == "__main__":
-    get_song()
+    get_song_from_user()
     setup_listener()
