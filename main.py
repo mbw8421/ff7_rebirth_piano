@@ -52,8 +52,8 @@ def push_single_joystick(stick, direction):
 
 
 def push_both_joysticks(direction_left, direction_right):
-    JOYSTICK_METHODS["left"](x_value_float=direction_left[0], y_value_float=direction_right[1])
-    JOYSTICK_METHODS["right"](x_value_float=direction_left[0], y_value_float=direction_right[1])
+    JOYSTICK_METHODS["left"](x_value_float=direction_left[0], y_value_float=direction_left[1])
+    JOYSTICK_METHODS["right"](x_value_float=direction_right[0], y_value_float=direction_right[1])
     gamepad.update()
     sleep(KEY_DELAY)
     JOYSTICK_METHODS["left"](x_value_float=0, y_value_float=0)
@@ -106,6 +106,8 @@ def play_song(song_name):
         elif line[0] == "B":
             left, right = line[1].split("-")
             push_both_joysticks(POSITION[left], POSITION[right])
+            if i - 1 == note_count:
+                break
             delay(float(line[2]))
 
 
