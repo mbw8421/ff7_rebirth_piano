@@ -139,7 +139,7 @@ B, E-S
 
     Heres the proof!
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/MHxFsa-_y4Q?si=5aQRuyVkPMegdWiy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    [![Video](https://i.ytimg.com/vi/MHxFsa-_y4Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=MHxFsa-_y4Q)
 
 
 3. __Where are the other songs?__
