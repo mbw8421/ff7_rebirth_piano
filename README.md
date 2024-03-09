@@ -137,11 +137,8 @@ B, E-S
 
     Did for me! I have included the exact csv I used. I imagine if you find it runs but does not complete the song correctly it will be down to latency between your remote play session and console. You can minimise this by ensuring that both the PS5 and computer you are running the script on are on wired connections and your remote play session is running at a low resolution to help with bandwidth.
 
-    Heres the proof!
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/MHxFsa-_y4Q?si=5aQRuyVkPMegdWiy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-2. __Where are the other songs?__
+3. __Where are the other songs?__
 
     As of writing this readme I've only added the first of the songs "On Our Way". As it stands this repo functions as the scaffolding around what is required to play the songs.
 
@@ -149,11 +146,11 @@ B, E-S
 
     I welcome PRs containing the other songs if someone else wants to generate them in the meantime!
 
-3. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
+4. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
 
     Go for it! I've not tried it but in theory this could be extended to play any song (you'd need to handle the changing octaves / keys etc. as this is done automatically for the built in songs).
 
-4. __Your script broke my PC!__
+5. __Your script broke my PC!__
 
     No it didnt, for the sake of argument though __run at your own risk__ and I take no responisibilty for any damage the script might cause.
 
