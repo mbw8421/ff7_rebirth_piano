@@ -139,7 +139,7 @@ B, E-S
 
 2. __Where are the other songs?__
 
-    As of writing this readme I've only started the first of the songs "On Our Way". This repo is meant more as the scaffolding around what is required to play the songs than the songs themselves.
+    As of writing this readme I've only added the first of the songs "On Our Way". As it stands this repo functions as the scaffolding around what is required to play the songs.
 
     Saying that I'll add the other songs when I get around to it, likely not until I am doing trophy cleanup but I plan to use this script to complete all the songs so will add them as I do them.
 
