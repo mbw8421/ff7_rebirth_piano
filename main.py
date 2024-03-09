@@ -1,4 +1,5 @@
 import csv
+import sys
 from time import sleep
 from pynput.mouse import Listener
 
@@ -124,5 +125,9 @@ def get_song_from_user():
 
 
 if __name__ == "__main__":
-    get_song_from_user()
-    setup_listener()
+    try:
+        get_song_from_user()
+        setup_listener()
+    except KeyboardInterrupt:
+        print("User requested to stop the script. Exiting gracefully.")
+        sys.exit(0)
