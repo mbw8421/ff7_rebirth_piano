@@ -139,7 +139,11 @@ B, E-S
 
 2. __Where are the other songs?__
 
-    As of writing this readme I've only created the first of the songs "On Our Way". I'll add the other songs when I get around to it, likely not until I am doing trophy cleanup.
+    As of writing this readme I've only started the first of the songs "On Our Way". This repo is meant more as the scaffolding around what is required to play the songs than the songs themselves.
+
+    Saying that I'll add the other songs when I get around to it, likely not until I am doing trophy cleanup but I plan to use this script to complete all the songs so will add them as I do them.
+
+    I welcome PRs containing the other songs if someone else wants to generate them in the meantime!
 
 3. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
 
