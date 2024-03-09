@@ -43,11 +43,21 @@ def push_button(button):
     gamepad.update()
 
 
-def push_joystick(stick, direction):
+def push_single_joystick(stick, direction):
     JOYSTICK_METHODS[stick](x_value_float=direction[0], y_value_float=direction[1])
     gamepad.update()
     sleep(KEY_DELAY)
     JOYSTICK_METHODS[stick](x_value_float=0, y_value_float=0)
+    gamepad.update()
+
+
+def push_both_joysticks(direction_left, direction_right):
+    JOYSTICK_METHODS["left"](x_value_float=direction_left[0], y_value_float=direction_right[1])
+    JOYSTICK_METHODS["right"](x_value_float=direction_left[0], y_value_float=direction_right[1])
+    gamepad.update()
+    sleep(KEY_DELAY)
+    JOYSTICK_METHODS["left"](x_value_float=0, y_value_float=0)
+    JOYSTICK_METHODS["right"](x_value_float=0, y_value_float=0)
     gamepad.update()
 
 
@@ -78,20 +88,24 @@ def play_song(song_name):
 
     # Play the song data
     for i, line in enumerate(song_data):
-        if i > 1:
-            print(f"Playing note [{line[1]}] {i - 1}/{note_count}")
         if i == 0:
             continue
-        if not line[1] or not line[2]:
-            print(f"Exiting due to missing data")
-            exit(1)
+        if i > 1:
+            print(f"Playing note [{line[1]}] {i - 1}/{note_count}")
+            if not line[1] or not line[2]:
+                print(f"Exiting due to missing data")
+                exit(1)
         if line[0] == "S":
             delay(float(line[2]))
         elif line[0] == "L":
-            push_joystick("left", POSITION[line[1]])
+            push_single_joystick("left", POSITION[line[1]])
             delay(float(line[2]))
         elif line[0] == "R":
-            push_joystick("right", POSITION[line[1]])
+            push_single_joystick("right", POSITION[line[1]])
+            delay(float(line[2]))
+        elif line[0] == "B":
+            left, right = line[1].split("-")
+            push_both_joysticks(POSITION[left], POSITION[right])
             delay(float(line[2]))
 
 

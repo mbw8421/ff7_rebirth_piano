@@ -100,19 +100,46 @@ When you're done, you can deactivate the virtual environment by running:
 deactivate
 ```
 
+## File Format
+
+The CSV files expect 3 columns titled:
+
+hand, note and post_delay
+
+Valid values for hand:
+|||
+|---|---|
+L | Left  
+R | Right  
+B | Both
+
+Valid values for note:
+|||
+|---|---|
+N | North
+NE | North-East
+E  | East
+SE | South-East
+S  | South
+SW | South-West
+W  | West
+NW | North-West
+
+If the value of hand for the given row is "B" denoting that 2 notes should be played together, ordinal values for note should be combined, seperated by a dash e.g.
+
+Left plays East, Right plays South in the CSV would be:
+
+B, E-S
+
 ## FAQS
 
 1. __Does it work?__
 
-    Did for me! I have included the exact csv I used.
+    Did for me! I have included the exact csv I used. I imagine if you find it runs but does not complete the song correctly it will be down to latency between your remote play session and console. You can minimise this by ensuring that both the PS5 and computer you are running the script on are on wired connections and your remote play session is running at a low resolution to help with bandwidth.
 
 2. __Where are the other songs?__
 
-    As of writing this readme I've only started the first of the songs "On Our Way". This repo is meant more as the scaffolding around what is required to play the songs than the songs themselves. 
-	
-	Saying that I'll add the other songs when I get around to it, likely not until I am doing trophy cleanup but I plan to use this script to complete all the songs so will add them as I do them. 
-	
-	I welcome PRs containing the other songs if someone else wants to generate them in the meantime!
+    As of writing this readme I've only created the first of the songs "On Our Way". I'll add the other songs when I get around to it, likely not until I am doing trophy cleanup.
 
 3. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
 
