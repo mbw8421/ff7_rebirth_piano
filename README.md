@@ -137,7 +137,6 @@ B, E-S
 
     Did for me! I have included the exact csv I used. I imagine if you find it runs but does not complete the song correctly it will be down to latency between your remote play session and console. You can minimise this by ensuring that both the PS5 and computer you are running the script on are on wired connections and your remote play session is running at a low resolution to help with bandwidth.
 
-   Here is proof! [https://i.ytimg.com/vi/MHxFsa-_y4Q/maxresdefault.jpg](https://www.youtube.com/watch?v=MHxFsa-_y4Q)
 
 3. __Where are the other songs?__
 
