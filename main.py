@@ -1,5 +1,6 @@
 import csv
 import sys
+from datetime import datetime
 from time import sleep
 from pynput.mouse import Listener
 
@@ -63,6 +64,8 @@ def push_both_joysticks(direction_left, direction_right):
 
 
 def delay(val):
+    if val < KEY_DELAY:
+        return
     sleep(val - KEY_DELAY)
 
 
@@ -79,20 +82,23 @@ def load_song_data_from_csv(song_name):
 
 
 def play_song(song_name):
-    formatted_name = song_name.strip().replace(" ", "_").lower()
+    formatted_name = song_name.strip().replace(" ", "_").replace("'", ".").lower()
     song_data = load_song_data_from_csv(formatted_name)
 
     # Start the song
     push_button(vg.DS4_BUTTONS.DS4_BUTTON_CROSS)
 
-    note_count = len(song_data) - 2
+    note_count = 0
+    total_note_count = song_data[1][1]
+    start_time = datetime.now()
 
     # Play the song data
     for i, line in enumerate(song_data):
         if i == 0:
             continue
         if i > 1:
-            print(f"Playing note [{line[1]}] {i - 1}/{note_count}")
+            timestamp = (datetime.now() - start_time).total_seconds()
+            print(f"Playing note [{line[1]}] [{note_count}/{total_note_count}][{i + 1}][{timestamp}]")
             if not line[1] or not line[2]:
                 print(f"Exiting due to missing data")
                 exit(1)
@@ -107,9 +113,11 @@ def play_song(song_name):
         elif line[0] == "B":
             left, right = line[1].split("-")
             push_both_joysticks(POSITION[left], POSITION[right])
-            if i - 1 == note_count:
-                break
             delay(float(line[2]))
+            note_count += 1
+        if note_count == total_note_count:
+            break
+        note_count += 1
 
 
 def setup_listener():
