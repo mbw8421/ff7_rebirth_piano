@@ -141,23 +141,18 @@ B, E-S
 
     [![Video](https://i.ytimg.com/vi/MHxFsa-_y4Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=MHxFsa-_y4Q)
 
-
-3. __Where are the other songs?__
-
-    As it stands this repo functions as the scaffolding around what is required to play the songs.
-
-    Saying that I'll add the other songs when I get around to it, likely not until I am doing trophy cleanup but I plan to use this script to complete all the songs so will add them as I do them.
-
-    I welcome PRs containing the other songs if someone else wants to generate them in the meantime!
-
-4. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
+2. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
 
     Go for it! I've not tried it but in theory this could be extended to play any song (you'd need to handle the changing octaves / keys etc. as this is done automatically for the built in songs).
 
-5. __Your script broke my PC!__
+3. __Your script broke my PC!__
 
     No it didnt, for the sake of argument though __run at your own risk__ and I take no responisibilty for any damage the script might cause.
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details
+
+## Special Thanks
+
+Special thanks to [@bad1dea](https://github.com/bad1dea) for providing most of the song CSVs!
