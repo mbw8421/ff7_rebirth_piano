@@ -1,4 +1,4 @@
-# Final Fantasy VII Rebirth Piano Minigame Script
+# Final Fantasy VII Rebirth Piano Minigame Script (Updated July 2026)
 
 A naive implementation of a script that leverages the pip library `vgamepad` to simulate a DS4 controller to send commands through PS Remote Play/Chiaki running on PC/Mac in order to play the stupid piano minigame for you.
 
@@ -126,11 +126,13 @@ B, E-S
 
     [![Video](https://i.ytimg.com/vi/MHxFsa-_y4Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=MHxFsa-_y4Q)
 
-2. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
+   <img width="641" height="1021" alt="scores" src="https://github.com/user-attachments/assets/45bcda41-5c6f-4da0-992a-f39db3799055" />
+
+3. __Can I create my own CSV file for the other songs / custom songs and get it to play that?__
 
     Go for it! I've not tried it but in theory this could be extended to play any song (you'd need to handle the changing octaves / keys etc. as this is done automatically for the built in songs).
 
-3. __Your script broke my PC!__
+4. __Your script broke my PC!__
 
     No it didnt, for the sake of argument though __run at your own risk__ and I take no responisibilty for any damage the script might cause.
 
