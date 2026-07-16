@@ -16,6 +16,16 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install ViGEmBus driver
+        # vgamepad's own setup.py detects whether ViGEmBus is installed and, if not,
+        # launches an interactive msiexec install dialog during its build - which
+        # hangs forever on a non-interactive CI runner. Installing it silently first
+        # means that check finds it already present and skips the installer.
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/ViGEm/ViGEmBus/releases/download/setup-v1.17.333/ViGEmBusSetup_x64.msi" -OutFile ViGEmBusSetup_x64.msi
+          Start-Process msiexec.exe -ArgumentList "/i ViGEmBusSetup_x64.msi /quiet /norestart" -Wait
+        shell: pwsh
+
       - name: Install dependencies
         run: python -m pip install -r requirements-build.txt
 
