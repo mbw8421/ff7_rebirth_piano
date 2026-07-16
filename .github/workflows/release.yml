@@ -1,0 +1,37 @@
+name: Build and release exe
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements-build.txt
+
+      - name: Build exe
+        run: python -m PyInstaller --onefile --name ff7_piano --collect-data vgamepad --distpath dist --workpath build --specpath build main.py
+
+      - name: Assemble release folder
+        run: |
+          New-Item -ItemType Directory -Force -Path release\ff7_piano | Out-Null
+          Copy-Item dist\ff7_piano.exe release\ff7_piano\
+          Copy-Item songs release\ff7_piano\songs -Recurse
+          Copy-Item README.md release\ff7_piano\
+          Compress-Archive -Path release\ff7_piano\* -DestinationPath release\ff7_piano-windows.zip
+        shell: pwsh
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/ff7_piano-windows.zip

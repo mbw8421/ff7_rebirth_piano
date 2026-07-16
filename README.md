@@ -6,12 +6,24 @@ Uses CSV files containing the notes and timings to send based on ordinal directi
 
 I pulled Youtube videos of perfect runs and loaded the audio from them into Audacity so that I could visually identify when notes were pressed in order to get the timings between notes, this worked 9 times out of 10 without extra fiddling so wasnt too bad.
 
-## Prerequisites
-Before proceeding, make sure you have Python 3 installed on your system. You can check this by running python --version (or python3 --version on some systems) in your terminal or command prompt.
+**Windows only** (`vgamepad`'s virtual controller only works on Windows).
 
-As mentioned to use this script you will need to have a working version of PS Remote Play or Chiaki running on the computer you are running the script from.
+## Prerequisites (both options below)
 
-## Setup and usage
+1. **ViGEmBus driver** — this is what lets `vgamepad` present a virtual controller to your PC at all. Download and install it from the [ViGEmBus releases page](https://github.com/ViGEm/ViGEmBus/releases) if you don't already have it (it's also a dependency of tools like DS4Windows, so you may already have it installed).
+2. A working PS Remote Play or Chiaki session already running and connected to your PS5, with the song you want to play highlighted and note speed set to 3/5.
+
+## Option A: Download and run the .exe (recommended if you don't use Python)
+
+1. Grab the latest `ff7_piano-windows.zip` from the [Releases page](https://github.com/mbw8421/ff7_rebirth_piano/releases) and unzip it anywhere.
+2. Double-click `ff7_piano.exe`.
+3. Type the song name when prompted (it must match the in-game song name, e.g. `On Our Way`), then click into the PS Remote Play/Chiaki window when asked.
+
+That's it — no Python, no pip, no terminal setup required. The `songs` folder next to the exe holds the CSVs; add your own `.csv` files there in the same [format](#file-format) to play custom songs.
+
+If Windows SmartScreen warns about the exe being unrecognized (normal for an unsigned indie tool), choose "More info" → "Run anyway". If you'd rather not run an unsigned exe at all, use Option B below and run it from source instead.
+
+## Option B: Run from source (for developers / if you don't want to run an exe)
 
 1. Clone the Repository or Download the Project
 
@@ -19,7 +31,7 @@ As mentioned to use this script you will need to have a working version of PS Re
 
 2. Navigate to the Project Directory
 
-    Change into the project directory: 
+    Change into the project directory:
 
     ```
     cd path/to/project
@@ -27,70 +39,32 @@ As mentioned to use this script you will need to have a working version of PS Re
 
 3. Create a Virtual Environment
 
-    Create a new virtual environment in the project directory by running:
-
-    On Windows:
-
     ```
     python -m venv venv
     ```
 
-    On macOS and Linux: 
-
-    ```
-    python3 -m venv venv
-    ```
-
 4. Activate the Virtual Environment
-
-    Activate the created virtual environment:
-
-    On Windows:
 
     ```
     venv\Scripts\activate
     ```
 
-    On macOS and Linux:
-
-    ```
-    source venv/bin/activate
-    ```
+    If PowerShell blocks this with a "running scripts is disabled" error, run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` once (as your own user, no admin needed) and try again.
 
 5. Install Dependencies
-
-    Install the required dependencies using the requirements.txt file:
-
-    On Windows:
 
     ```
     python -m pip install -r requirements.txt
     ```
 
-    On macOS and Linux
-
-    ```
-    python3 -m pip install -r requirements.txt
-    ```
-
 6. Run the Script
-
-    Finally, run the Python script:
-
-    On Windows:
 
     ```
     python main.py
     ```
 
-    On macOS and Linux:
+    It will ask you to type in the name of the song you want it to play, this will match what the song is called in FF7. Once you've entered the song it will prompt you to click the remote play window.
 
-    ```
-    python3 script_name.py
-    ```
-
-    It will ask you to type in the name of the song you want it to play, this will match what the song is called in FF7. Once you've entered the song it will prompt you to click the remote play window. 
-    
     Once you have done that it will start. It assumes you already have the song that you want to play highlighted and are at note speed 3/5.
 
 ## Deactivating the Virtual Environment
@@ -99,6 +73,17 @@ When you're done, you can deactivate the virtual environment by running:
 ```
 deactivate
 ```
+
+## Building the .exe yourself
+
+Releases are built automatically by the `.github/workflows/release.yml` GitHub Action whenever a `v*` tag is pushed, but you can build one locally too:
+
+```
+python -m pip install -r requirements-build.txt
+python -m PyInstaller --onefile --name ff7_piano --collect-data vgamepad main.py
+```
+
+The exe will be in `dist/`. Copy the `songs` folder next to it before running — the exe reads CSVs from a `songs` folder relative to itself, the same as `main.py` does when run from source. The `--collect-data vgamepad` flag is required: it bundles the `ViGEmClient.dll` that `vgamepad` loads at runtime, which PyInstaller won't pick up automatically.
 
 ## File Format
 
