@@ -19,7 +19,7 @@ I pulled Youtube videos of perfect runs and loaded the audio from them into Auda
 2. Double-click `ff7_piano.exe`.
 3. Type the song name when prompted (it must match the in-game song name, e.g. `On Our Way`), then click into the PS Remote Play/Chiaki window when asked.
 
-That's it — no Python, no pip, no terminal setup required. The `songs` folder next to the exe holds the CSVs; add your own `.csv` files there in the same [format](#file-format) to play custom songs.
+The `songs` folder next to the exe holds the CSVs; add your own `.csv` files there in the same [format](#file-format) to play custom songs.
 
 If Windows SmartScreen warns about the exe being unrecognized (normal for an unsigned indie tool), choose "More info" → "Run anyway". If you'd rather not run an unsigned exe at all, use Option B below and run it from source instead.
 
