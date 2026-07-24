@@ -8,6 +8,8 @@ I pulled Youtube videos of perfect runs and loaded the audio from them into Auda
 
 **Windows only** (`vgamepad`'s virtual controller only works on Windows).
 
+[@KingAndaval](https://github.com/KingAndaval) has kindly provided a MacOS compatible fork [here](https://github.com/KingAndaval/ff7_rebirth_piano) for those interested.
+
 ## Prerequisites (both options below)
 
 1. **ViGEmBus driver** — this is what lets `vgamepad` present a virtual controller to your PC at all. Download and install it from the [ViGEmBus releases page](https://github.com/ViGEm/ViGEmBus/releases) if you don't already have it (it's also a dependency of tools like DS4Windows, so you may already have it installed).
